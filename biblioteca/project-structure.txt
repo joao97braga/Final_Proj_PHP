@@ -1,0 +1,47 @@
+biblioteca
+├── auth
+│   ├── login.php
+│   ├── logout.php
+│   └── session.php
+├── autores
+│   ├── add_author.php
+│   ├── edit_author.php
+│   └── list_authors.php
+├── css
+│   ├── bootstrap.min.css
+│   └── style.css
+├── database
+│   └── biblioteca.sql
+├── emprestimos
+│   ├── add_loan.php
+│   ├── edit_loan.php
+│   ├── list_loans.php
+│   └── return_loan.php
+├── frontoffice
+│   ├── conta
+│   │   ├── historico.php
+│   │   ├── login.php
+│   │   └── register.php
+│   ├── autores.php
+│   ├── index.php
+│   └── livros.php
+├── includes
+│   ├── footer.php
+│   ├── header.php
+│   └── navbar.php
+├── js
+│   ├── bootstrap.min.js
+│   └── script.js
+├── leitores
+│   ├── add_reader.php
+│   ├── delete_reader.php
+│   ├── edit_reader.php
+│   └── list_readers.php
+├── livros
+│   ├── add_book.php
+│   ├── delete_book.php
+│   ├── edit_book.php
+│   └── list_books.php
+├── config.php
+├── index.php
+└── README.md
