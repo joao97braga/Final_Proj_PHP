@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../config.php';
 
 $livro_id = $_GET['id'];
 $sql = "DELETE FROM livro WHERE Livro_ID=$livro_id";

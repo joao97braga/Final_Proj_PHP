@@ -17,11 +17,11 @@ if ($result_livro->num_rows == 0) {
     $error = "Livro não encontrado.";
 } else {
     $livro = $result_livro->fetch_assoc();
-    
+
     // Verificar se o livro já está emprestado
     $sql_check = "SELECT * FROM Emprestimo WHERE Livro_ID = $livro_id AND Date_Entrega IS NULL";
     $result_check = $conn->query($sql_check);
-    
+
     if ($result_check->num_rows > 0) {
         $error = "Este livro já está emprestado e ainda não foi devolvido.";
     } else {
@@ -29,17 +29,17 @@ if ($result_livro->num_rows == 0) {
         $sql_count = "SELECT COUNT(*) as total FROM Emprestimo WHERE Leitor_ID = $leitor_id AND Date_Entrega IS NULL";
         $result_count = $conn->query($sql_count);
         $row_count = $result_count->fetch_assoc();
-        
+
         if ($row_count['total'] >= 5) {
             $error = "Você já atingiu o limite máximo de empréstimos ativos (5).";
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Processar a solicitação de empréstimo
             $data_hoje = date('Y-m-d');
             $data_vencimento = date('Y-m-d', strtotime('+15 days')); // 15 dias para devolução
-            
+
             $sql_insert = "INSERT INTO Emprestimo (Livro_ID, Leitor_ID, Data_Emp, Data_Vencimento) 
                           VALUES ($livro_id, $leitor_id, '$data_hoje', '$data_vencimento')";
-            
+
             if ($conn->query($sql_insert) === TRUE) {
                 $success = true;
             } else {
@@ -52,15 +52,19 @@ if ($result_livro->num_rows == 0) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitar Empréstimo</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
     <?php include '../../includes/header.php'; ?>
     <?php include '../../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -103,7 +107,7 @@ if ($result_livro->num_rows == 0) {
                                     <p><strong>Leitor:</strong> <?php echo $_SESSION['nome']; ?></p>
                                 </div>
                             </div>
-                            
+
                             <form method="POST" action="" class="mt-4">
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" id="concordo" name="concordo" required>
@@ -120,9 +124,10 @@ if ($result_livro->num_rows == 0) {
             </div>
         </div>
     </div>
-    
+
     <?php include '../../includes/footer.php'; ?>
 </body>
+
 </html>
 
 <?php

@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $titulo = $_POST['titulo'];
@@ -24,10 +24,16 @@ $conn->close();
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Livro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
+    <?php include '../includes/header.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
     <h1>Adicionar Livro</h1>
     <form method="POST" action="">
         <label>Título:</label><br>

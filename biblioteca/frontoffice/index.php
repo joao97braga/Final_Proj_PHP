@@ -13,15 +13,19 @@ $result_autores = $conn->query($sql_autores);
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca - Portal</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <?php include '../includes/header.php'; ?>
     <?php include '../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="jumbotron">
             <h1 class="display-4">Bem-vindo à Biblioteca</h1>
@@ -33,7 +37,7 @@ $result_autores = $conn->query($sql_autores);
                 <a class="btn btn-secondary btn-lg" href="../frontoffice/conta/register.php" role="button">Criar Conta</a>
             <?php endif; ?>
         </div>
-        
+
         <div class="row mt-5">
             <div class="col-md-6">
                 <div class="card">
@@ -60,7 +64,7 @@ $result_autores = $conn->query($sql_autores);
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -86,9 +90,10 @@ $result_autores = $conn->query($sql_autores);
             </div>
         </div>
     </div>
-    
+
     <?php include '../includes/footer.php'; ?>
 </body>
+
 </html>
 
 <?php

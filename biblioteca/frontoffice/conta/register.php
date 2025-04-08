@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telemovel = $_POST['telemovel'];
     $email = $_POST['email'];
     $password = $_POST['password']; // Em um cenário real, isso seria hasheado com password_hash()
-    
+
     // Verificar se o email já existe
     $sql_check = "SELECT * FROM Leitor WHERE Email = '$email'";
     $result_check = $conn->query($sql_check);
-    
+
     if ($result_check->num_rows > 0) {
         $error = "Este email já está em uso. Por favor, escolha outro.";
     } else {
@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($conn->query($sql) === TRUE) {
             // Obter o ID do leitor recém-criado
             $leitor_id = $conn->insert_id;
-            
+
             // Fazer login automático
             $_SESSION['leitor_id'] = $leitor_id;
             $_SESSION['nome'] = $primeiro_nome . ' ' . $ultimo_nome;
             $_SESSION['email'] = $email;
-            
+
             header('Location: ../../index.php');
             exit;
         } else {
@@ -51,15 +51,19 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Biblioteca</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
     <?php include '../../includes/header.php'; ?>
     <?php include '../../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -71,7 +75,7 @@ $conn->close();
                         <?php if (isset($error)): ?>
                             <div class="alert alert-danger"><?php echo $error; ?></div>
                         <?php endif; ?>
-                        
+
                         <form method="POST" action="">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -105,7 +109,7 @@ $conn->close();
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar</button>
                         </form>
-                        
+
                         <div class="mt-3">
                             <p>Já tem uma conta? <a href="login.php">Faça login aqui</a></p>
                         </div>
@@ -114,7 +118,8 @@ $conn->close();
             </div>
         </div>
     </div>
-    
+
     <?php include '../../includes/footer.php'; ?>
 </body>
+
 </html>

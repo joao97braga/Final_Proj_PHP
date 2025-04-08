@@ -19,25 +19,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data_emp = $_POST['data_emp'];
     $data_vencimento = $_POST['data_vencimento'];
     $date_entrega = $_POST['date_entrega'] ?: NULL;
-    
+
     // Verificar se a nova atribuição de livro está disponível (se estiver mudando o livro)
     $sql_current = "SELECT Livro_ID FROM Emprestimo WHERE Emprestimo_ID = $emprestimo_id";
     $result_current = $conn->query($sql_current);
     $current_loan = $result_current->fetch_assoc();
-    
+
     $can_update = true;
-    
+
     if ($current_loan['Livro_ID'] != $livro_id) {
         // Verificar se o novo livro já está emprestado
         $sql_check = "SELECT * FROM Emprestimo WHERE Livro_ID = $livro_id AND Date_Entrega IS NULL AND Emprestimo_ID != $emprestimo_id";
         $result_check = $conn->query($sql_check);
-        
+
         if ($result_check->num_rows > 0) {
             $error = "Este livro já está emprestado e ainda não foi devolvido.";
             $can_update = false;
         }
     }
-    
+
     if ($can_update) {
         $sql = "UPDATE Emprestimo SET 
                 Livro_ID = $livro_id, 
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emprestimo_id = $_GET['id'];
     $sql = "SELECT * FROM Emprestimo WHERE Emprestimo_ID = $emprestimo_id";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows == 1) {
         $emprestimo = $result->fetch_assoc();
     } else {
@@ -70,15 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Empréstimo</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <?php include '../includes/header.php'; ?>
     <?php include '../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -88,16 +92,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php if (isset($error)): ?>
                     <div class="alert alert-danger"><?php echo $error; ?></div>
                 <?php endif; ?>
-                
+
                 <form method="POST" action="">
                     <input type="hidden" name="emprestimo_id" value="<?php echo $emprestimo['Emprestimo_ID']; ?>">
                     <div class="mb-3">
                         <label for="livro_id" class="form-label">Livro:</label>
                         <select class="form-control" name="livro_id" required>
-                            <?php 
+                            <?php
                             // Reset the result pointer
                             $result_livros->data_seek(0);
-                            while ($livro = $result_livros->fetch_assoc()): 
+                            while ($livro = $result_livros->fetch_assoc()):
                             ?>
                                 <option value="<?php echo $livro['LIVRO_ID']; ?>" <?php echo ($livro['LIVRO_ID'] == $emprestimo['Livro_ID']) ? 'selected' : ''; ?>>
                                     <?php echo $livro['Titulo'] . ' (ISBN: ' . $livro['ISBN'] . ')'; ?>
@@ -108,10 +112,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="mb-3">
                         <label for="leitor_id" class="form-label">Leitor:</label>
                         <select class="form-control" name="leitor_id" required>
-                            <?php 
+                            <?php
                             // Reset the result pointer
                             $result_leitores->data_seek(0);
-                            while ($leitor = $result_leitores->fetch_assoc()): 
+                            while ($leitor = $result_leitores->fetch_assoc()):
                             ?>
                                 <option value="<?php echo $leitor['Leitor_ID']; ?>" <?php echo ($leitor['Leitor_ID'] == $emprestimo['Leitor_ID']) ? 'selected' : ''; ?>>
                                     <?php echo $leitor['Primeiro_nome'] . ' ' . $leitor['Ultimo_nome'] . ' (' . $leitor['Email'] . ')'; ?>
@@ -137,9 +141,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    
+
     <?php include '../includes/footer.php'; ?>
 </body>
+
 </html>
 
 <?php

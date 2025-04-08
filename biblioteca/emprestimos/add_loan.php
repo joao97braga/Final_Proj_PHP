@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $leitor_id = $_POST['leitor_id'];
     $data_emp = $_POST['data_emp'];
     $data_vencimento = $_POST['data_vencimento'];
-    
+
     // Verificar se o livro já está emprestado
     $sql_check = "SELECT * FROM Emprestimo WHERE Livro_ID = $livro_id AND Date_Entrega IS NULL";
     $result_check = $conn->query($sql_check);
-    
+
     if ($result_check->num_rows > 0) {
         $error = "Este livro já está emprestado e ainda não foi devolvido.";
     } else {
@@ -40,15 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Empréstimo</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <?php include '../includes/header.php'; ?>
     <?php include '../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -58,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php if (isset($error)): ?>
                     <div class="alert alert-danger"><?php echo $error; ?></div>
                 <?php endif; ?>
-                
+
                 <form method="POST" action="">
                     <div class="mb-3">
                         <label for="livro_id" class="form-label">Livro:</label>
@@ -92,9 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    
+
     <?php include '../includes/footer.php'; ?>
 </body>
+
 </html>
 
 <?php

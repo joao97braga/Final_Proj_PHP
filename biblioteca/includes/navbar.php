@@ -1,10 +1,23 @@
 <?php
-session_start();
-$basePath = str_replace('/includes', '', dirname($_SERVER['PHP_SELF']));
+// session_start();
+$current_path = $_SERVER['PHP_SELF'];
+$path_parts = explode('/', $current_path);
+$depth = count(array_intersect($path_parts, ['includes', 'livros', 'autores', 'leitores', 'emprestimos', 'frontoffice', 'auth']));
+$basePath = '';
+
+for($i = 0; $i < $depth; $i++) {
+    $basePath .= '../';
+}
+$basePath = rtrim($basePath, '/');
+
+if ($basePath === '') {
+    $basePath = ' .';
+}
+
 $isLoggedIn = isset($_SESSION['leitor_id']);
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="<?php echo $basePath; ?>/index.php">Biblioteca</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

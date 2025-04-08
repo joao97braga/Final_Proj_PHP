@@ -17,15 +17,19 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Empréstimos</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
     <?php include '../../includes/header.php'; ?>
     <?php include '../../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -45,20 +49,20 @@ $result = $conn->query($sql);
                         </thead>
                         <tbody>
                             <?php while ($row = $result->fetch_assoc()): ?>
-                                <?php 
-                                    $status = '';
-                                    $status_class = '';
-                                    
-                                    if ($row['Date_Entrega']) {
-                                        $status = 'Devolvido';
-                                        $status_class = 'text-success';
-                                    } elseif (strtotime($row['Data_Vencimento']) < time()) {
-                                        $status = 'Em Atraso';
-                                        $status_class = 'text-danger';
-                                    } else {
-                                        $status = 'Em Andamento';
-                                        $status_class = 'text-primary';
-                                    }
+                                <?php
+                                $status = '';
+                                $status_class = '';
+
+                                if ($row['Date_Entrega']) {
+                                    $status = 'Devolvido';
+                                    $status_class = 'text-success';
+                                } elseif (strtotime($row['Data_Vencimento']) < time()) {
+                                    $status = 'Em Atraso';
+                                    $status_class = 'text-danger';
+                                } else {
+                                    $status = 'Em Andamento';
+                                    $status_class = 'text-primary';
+                                }
                                 ?>
                                 <tr>
                                     <td><?php echo $row['livro_titulo'] . ' (ISBN: ' . $row['livro_isbn'] . ')'; ?></td>
@@ -76,9 +80,10 @@ $result = $conn->query($sql);
             </div>
         </div>
     </div>
-    
+
     <?php include '../../includes/footer.php'; ?>
 </body>
+
 </html>
 
 <?php

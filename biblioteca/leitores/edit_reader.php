@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $leitor_id = $_GET['id'];
     $sql = "SELECT * FROM Leitor WHERE Leitor_ID = $leitor_id";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows == 1) {
         $leitor = $result->fetch_assoc();
     } else {
@@ -46,25 +46,29 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Leitor</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <?php include '../includes/header.php'; ?>
     <?php include '../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
                 <h3>Editar Leitor</h3>
             </div>
             <div class="card-body">
-            <?php if (isset($error)): ?>
+                <?php if (isset($error)): ?>
                     <div class="alert alert-danger"><?php echo $error; ?></div>
                 <?php endif; ?>
-                
+
                 <form method="POST" action="">
                     <input type="hidden" name="leitor_id" value="<?php echo $leitor['Leitor_ID']; ?>">
                     <div class="mb-3">
@@ -97,7 +101,8 @@ $conn->close();
             </div>
         </div>
     </div>
-    
+
     <?php include '../includes/footer.php'; ?>
 </body>
+
 </html>

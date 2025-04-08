@@ -20,15 +20,19 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autores</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <?php include '../includes/header.php'; ?>
     <?php include '../includes/navbar.php'; ?>
-    
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -45,7 +49,7 @@ $result = $conn->query($sql);
                         </div>
                     </div>
                 </form>
-                
+
                 <div class="row">
                     <?php if ($result->num_rows > 0): ?>
                         <?php while ($row = $result->fetch_assoc()): ?>
@@ -73,9 +77,10 @@ $result = $conn->query($sql);
             </div>
         </div>
     </div>
-    
+
     <?php include '../includes/footer.php'; ?>
 </body>
+
 </html>
 
 <?php
