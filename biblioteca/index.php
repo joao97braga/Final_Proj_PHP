@@ -20,7 +20,7 @@ include 'auth/session.php';
 
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Bem-vindo à Biblioteca</h1>
+            <h1 class="display-4">Bem-vindo à BookLib</h1>
             <p class="lead">Sistema de Gestão de Biblioteca para administrar livros, autores, leitores e empréstimos.</p>
             <hr class="my-4">
             <p>Utilize as opções abaixo para navegar pelo sistema.</p>

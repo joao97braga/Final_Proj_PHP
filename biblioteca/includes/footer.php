@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white py-3 mt-5">
+<footer class="bg-dark text-white py-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -13,6 +13,6 @@
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
-    <script src="<?php echo str_replace('/includes', '', dirname($_SERVER['PHP_SELF'])); ?>/js/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

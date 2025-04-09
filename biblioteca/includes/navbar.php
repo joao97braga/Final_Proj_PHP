@@ -17,17 +17,14 @@ if ($basePath === '') {
 $isLoggedIn = isset($_SESSION['leitor_id']);
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
     <div class="container">
-        <a class="navbar-brand" href="<?php echo $basePath; ?>/index.php">Biblioteca</a>
+        <a class="navbar-brand" href="<?php echo $basePath; ?>/index.php">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $basePath; ?>/index.php">Home</a>
-                </li>
+            <ul class="navbar-nav">                
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo $basePath; ?>/livros/list_books.php">Livros</a>
                 </li>
