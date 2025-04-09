@@ -31,8 +31,8 @@ include 'auth/session.php';
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">Livros</h5>
-                        <p class="card-text">Gerenciar catálogo de livros</p>
-                        <a href="livros/list_books.php" class="btn btn-primary">Acessar</a>
+                        <p class="card-text">Gerir catálogo de livros</p>
+                        <a href="livros/list_books.php" class="btn btn-primary">Aceder</a>
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@ include 'auth/session.php';
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">Autores</h5>
-                        <p class="card-text">Gerenciar autores de livros</p>
-                        <a href="autores/list_authors.php" class="btn btn-primary">Acessar</a>
+                        <p class="card-text">Gerir autores de livros</p>
+                        <a href="autores/list_authors.php" class="btn btn-primary">Aceder</a>
                     </div>
                 </div>
             </div>
@@ -51,8 +51,8 @@ include 'auth/session.php';
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">Leitores</h5>
-                        <p class="card-text">Gerenciar cadastro de leitores</p>
-                        <a href="leitores/list_readers.php" class="btn btn-primary">Acessar</a>
+                        <p class="card-text">Gerir registo de leitores</p>
+                        <a href="leitores/list_readers.php" class="btn btn-primary">Aceder</a>
                     </div>
                 </div>
             </div>
@@ -61,8 +61,8 @@ include 'auth/session.php';
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">Empréstimos</h5>
-                        <p class="card-text">Gerenciar empréstimos de livros</p>
-                        <a href="emprestimos/list_loans.php" class="btn btn-primary">Acessar</a>
+                        <p class="card-text">Gerir empréstimos de livros</p>
+                        <a href="emprestimos/list_loans.php" class="btn btn-primary">Aceder</a>
                     </div>
                 </div>
             </div>
